@@ -1,5 +1,4 @@
-package com.javagda25.Trivia_api.model.api;
-
+package com.javagda25.Trivia_api.model.API_models;
 
 import lombok.Data;
 

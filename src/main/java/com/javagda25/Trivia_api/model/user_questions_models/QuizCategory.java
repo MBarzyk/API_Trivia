@@ -1,8 +1,8 @@
-package com.javagda25.Trivia_api.model;
+package com.javagda25.Trivia_api.model.user_questions_models;
 
 public enum QuizCategory {
-    GENERAL_KNOWLEDGE("General Knowledge", 9),
     ANY("Any Category", -1),
+    GENERAL_KNOWLEDGE("General Knowledge", 9),
     ENTERTAINMENT_BOOKS("Entertainment: Books", 10),
     ENTERTAINMENT_FILM("Entertainment: Film", 11),
     ENTERTAINMENT_MUSIC("Entertainment: Music", 12),

@@ -1,9 +1,9 @@
 package com.javagda25.Trivia_api;
 
-import com.javagda25.Trivia_api.model.QuizCategory;
-import com.javagda25.Trivia_api.model.QuizDifficulty;
-import com.javagda25.Trivia_api.model.QuizParameters;
-import com.javagda25.Trivia_api.model.QuizType;
+import com.javagda25.Trivia_api.model.user_questions_models.QuizCategory;
+import com.javagda25.Trivia_api.model.user_questions_models.QuizDifficulty;
+import com.javagda25.Trivia_api.model.user_questions_models.QuizParameters;
+import com.javagda25.Trivia_api.model.user_questions_models.QuizType;
 
 public class APITriviaBuilder {
     private static final String BASE_URL = "https://opentdb.com/api.php?amount={amount}";
@@ -14,14 +14,14 @@ public class APITriviaBuilder {
         builder = new StringBuilder(BASE_URL);
     }
 
-    public void appendNumberOfQuestions (String count) {
+    private void appendNumberOfQuestions (String count) {
         if (builder.toString().contains("{amount}")) {
-            int pozycjaAmount = builder.indexOf("{amount}");
-            builder.replace(pozycjaAmount, pozycjaAmount + 8, count);
+            int positionAmount = builder.indexOf("{amount}");
+            builder.replace(positionAmount, positionAmount + 8, count);
         }
     }
 
-    public void appendDifficulty (QuizDifficulty quizDifficulty) {
+    private void appendDifficulty (QuizDifficulty quizDifficulty) {
         if (!builder.toString().contains("&difficulty=") && quizDifficulty != QuizDifficulty.ANY) {
             builder.append("&difficulty=");
             builder.append(quizDifficulty.toString().toUpperCase());
@@ -29,7 +29,7 @@ public class APITriviaBuilder {
             System.err.println("Poziom trudności został już ustawiony!");
         }
     }
-    public void appendType (QuizType quizType) {
+    private void appendType (QuizType quizType) {
         if (!builder.toString().contains("&type=") && quizType != QuizType.ANY) {
             builder.append("&type=");
             builder.append(quizType.toString().toUpperCase());
@@ -37,7 +37,7 @@ public class APITriviaBuilder {
             System.err.println("Typ został już ustawiony!");
         }
     }
-    public void appendCategory(QuizCategory quizCategory) {
+    private void appendCategory(QuizCategory quizCategory) {
         if (!builder.toString().contains("&category=") && quizCategory != QuizCategory.ANY) {
             builder.append("&category=");
             builder.append(quizCategory.getId());

@@ -1,7 +1,7 @@
 package com.javagda25.Trivia_api;
 
 import com.google.gson.Gson;
-import com.javagda25.Trivia_api.model.api.TriviaResponse;
+import com.javagda25.Trivia_api.model.API_models.TriviaResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,11 +20,11 @@ public class TriviaAPI {
             try(BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
 
 
-//                String liniaZeStrony;
-//                while ((liniaZeStrony = reader.readLine()) != null) {
-//                    builder.append(liniaZeStrony);
+//                String lineFromPage;
+//                while ((lineFromPage = reader.readLine()) != null) {
+//                    builder.append(lineFromPage);
 //                }
-                // LUB TAK:
+                // or simpler:
 
                 reader.lines().forEach(builder::append);
 

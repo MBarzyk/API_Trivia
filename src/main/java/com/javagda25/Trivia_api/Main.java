@@ -1,21 +1,21 @@
 package com.javagda25.Trivia_api;
 
-import com.javagda25.Trivia_api.model.QuizParameters;
+import com.javagda25.Trivia_api.model.API_models.TriviaResponse;
+import com.javagda25.Trivia_api.model.quiz_game_models.QuizGame;
+import com.javagda25.Trivia_api.model.user_questions_models.QuizParameters;
 
 public class Main {
-    private final static String BASE_NBP_API_URL = "https://opentdb.com/api.php?amount={qnumber]&category={catnumb}&difficulty{level}&type={type}";
-
     public static void main(String[] args) {
         QuizParameters quizParameters = new QuizParameters();
-        ScannerContentLoader scanner = new ScannerContentLoader();
+        ScannerContentLoader scannerContentLoader = new ScannerContentLoader();
         APITriviaBuilder apiTriviaBuilder = new APITriviaBuilder();
 
         System.out.println("Welcome to Trivia API");
 
-        scanner.loadQuestionNumberFromUser(quizParameters);
-        scanner.loadCategoryFromUser(quizParameters);
-        scanner.loadDifficultyFromUser(quizParameters);
-        scanner.loadTypeFromUser(quizParameters);
+        scannerContentLoader.loadQuestionNumberFromUser(quizParameters);
+        scannerContentLoader.loadCategoryFromUser(quizParameters);
+        scannerContentLoader.loadDifficultyFromUser(quizParameters);
+        scannerContentLoader.loadTypeFromUser(quizParameters);
 
         apiTriviaBuilder.loadParameters(quizParameters);
 
@@ -23,7 +23,9 @@ public class Main {
 
         TriviaAPI triviaAPI = new TriviaAPI();
 
-        triviaAPI.loadURLbyInputStream(requestURL).getResults().forEach(System.out::println);
-    }
+        TriviaResponse response = triviaAPI.loadURLbyInputStream(requestURL);
 
+        QuizGame game = new QuizGame(response);
+        game.beginGame();
+    }
 }
